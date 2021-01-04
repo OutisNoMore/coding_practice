@@ -26,8 +26,8 @@ public class Vector2D {
 		System.out.println("6. Distance between points");
 		System.out.println("7. Unit vector");
 		System.out.print("What will it be? ");
-		//Scanner menu = new Scanner(System.in);
 		option = Integer.parseInt(menu.nextLine());
+		System.out.println();
 		switch(option) {
 		case 1:
 			getVector(menu);
