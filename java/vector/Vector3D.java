@@ -28,41 +28,40 @@ public class Vector3D {
 		System.out.println("6. Distance between the points");
 		System.out.println("7. Unit vector");
 		System.out.print("What will it be? ");
-		//Scanner menu = new Scanner(System.in);
 		option = Integer.parseInt(menu.nextLine());	
-			switch(option){
-			case 1:
-				getVector(menu);
-				System.out.println("Magnitude of vector is: " + getMagnitude());
-				break;
-			case 2:
-				getVectors(menu);
-				System.out.println("Dot product of vectors is: " + getDotProduct());
-				break;
-			case 3: 
-				getVectors(menu);
-				System.out.println("Sum of both vectors is: " + getSum());
-				break;
-			case 4: 
-				getVectors(menu);
-				System.out.println("Difference of vector 2 and vector 1 is: " + getDifference());
-				break;
-			case 5:
-				getVectors(menu);
-				System.out.println("The product of Vector 1 and Vector 2 is: " + getProduct());
-				break;
-			case 6:
-				getVectors(menu);
-				System.out.println("The distance between the two points is: " + getDistance());
-				break;
-			case 7:
-				getVector(menu);
-				System.out.println("The unit vector of: " + "<" + x1 + "," + y1 + "," + z1 + "> " + "is " + getUnitVector());
-				break;
-			default:
-				System.out.println("Not a valid option, please try again");
-				break;
-			}
+		
+		if(option == 1 || option == 7){
+			getVector(menu);	
+		}else{
+			getVectors(menu);	
+		}
+		
+		switch(option){
+		case 1:
+			System.out.println("Magnitude of vector is: " + getMagnitude());
+			break;
+		case 2:
+			System.out.println("Dot product of vectors is: " + getDotProduct());
+			break;
+		case 3: 
+			System.out.println("Sum of both vectors is: " + getSum());
+			break;
+		case 4: 
+			System.out.println("Difference of vector 2 and vector 1 is: " + getDifference());
+			break;
+		case 5:
+			System.out.println("The product of Vector 1 and Vector 2 is: " + getProduct());
+			break;
+		case 6:
+			System.out.println("The distance between the two points is: " + getDistance());
+			break;
+		case 7:
+			System.out.println("The unit vector of: " + "<" + x1 + "," + y1 + "," + z1 + "> " + "is " + getUnitVector());
+			break;
+		default:
+			System.out.println("Not a valid option, please try again");
+			break;
+		}
 	}
 	
 	private double getMagnitude() {
