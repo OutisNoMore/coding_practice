@@ -65,47 +65,47 @@ public class Vector3D {
 			}
 	}
 	
-	public double getMagnitude() {
+	private double getMagnitude() {
 		return Math.sqrt(x1*x1 + y1*y1 + z1*z1);
 	}
 	
-	public double getDotProduct() {
+	private double getDotProduct() {
 		return x1*x2 + y1*y2 + z1*z2;
 	}
 	
-	public String getSum() {
+	private String getSum() {
 		double x = x1 + x2;
 		double y = y1 + y2;
 		double z = z1 + z2;
 		return "<" + x + "," + y + "," + z + ">"; 
 	}
 	
-	public String getDifference() {
+	private String getDifference() {
 		double x = x2 - x1;
 		double y = y2 - y1;
 		double z = z2 - z1;
 		return "<" + x + "," + y + "," + z + ">";
 	}
 	
-	public String getProduct() {
+	private String getProduct() {
 		double x = x1 * x2;
 		double y = y1 * y2;
 		double z = z1 * z2;
 		return "<" + x + "," + y + "," + z + ">";
 	}
 	
-	public double getDistance() {
+	private double getDistance() {
 		return Math.sqrt(Math.pow(x2-x1, 2) + Math.pow(y2-y1, 2) + Math.pow(z2-z1, 2));
 	}
 	
-	public String getUnitVector() {
+	private String getUnitVector() {
 		double x = getMagnitude()*x1;
 		double y = getMagnitude()*y1;
 		double z = getMagnitude()*z1;
 		return "<" + x + "," + y + "," + z + ">";
 	}
 	
-	public void getVector(Scanner s) {
+	private void getVector(Scanner s) {
 		System.out.print("Vector 1 X: ");
 		x1 = Double.parseDouble(s.nextLine());
 		System.out.print("Vector 1 Y: ");
@@ -114,7 +114,7 @@ public class Vector3D {
 		z1 = Double.parseDouble(s.nextLine());
 	}
 	
-	public void getVectors(Scanner s) {
+	private void getVectors(Scanner s) {
 		System.out.print("Vector 1 X: ");
 		x1 = Double.parseDouble(s.nextLine());
 		System.out.print("Vector 1 Y: ");
