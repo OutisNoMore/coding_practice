@@ -27,34 +27,34 @@ public class Vector2D {
 		System.out.println("7. Unit vector");
 		System.out.print("What will it be? ");
 		option = Integer.parseInt(menu.nextLine());
+		
+		if(option == 1 || option == 7){
+			getVector(menu);	
+		}else{
+			getVectors(menu);	
+		}
+		
 		System.out.println();
 		switch(option) {
 		case 1:
-			getVector(menu);
 			System.out.println("Magnitude of vector is: " + getMagnitude());
 			break;
 		case 2:
-			getVectors(menu);
 			System.out.println("Dot product of vectors is: " + getDotProduct());
 			break;
 		case 3: 
-			getVectors(menu);
 			System.out.println("Sum of both vectors is: " + getSum());
 			break;
 		case 4: 
-			getVectors(menu);
 			System.out.println("Difference of vector 2 and vector 1 is: " + getDifference());
 			break;
 		case 5:
-			getVectors(menu);
 			System.out.println("The product of Vector 1 and Vector 2 is: " + getProduct());
 			break;
 		case 6:
-			getVectors(menu);
 			System.out.println("The distance between point 1 and point 2 is: " + getDistance());
 			break;
 		case 7:
-			getVector(menu);
 			System.out.println("The unit vector of: " + "<" + x1 + "," + y1 + "> " + "is " + getUnitVector());
 			break;
 		default:
@@ -111,9 +111,9 @@ public class Vector2D {
 		x1 = Double.parseDouble(s.nextLine());
 		System.out.print("Vector 1 Y: ");
 		y1 = Double.parseDouble(s.nextLine());
-		System.out.print("Vector 1 X: ");
+		System.out.print("Vector 2 X: ");
 		x2 = Double.parseDouble(s.nextLine());
-		System.out.print("Vector 1 Y: ");
+		System.out.print("Vector 2 Y: ");
 		y2 = Double.parseDouble(s.nextLine());
 	}
 }
