@@ -63,50 +63,50 @@ public class Vector2D {
 		}
 	}
 	
-	public double getMagnitude() {
+	private double getMagnitude() {
 		return Math.sqrt(x1*x1 + y1*y1);
 	}
 	
-	public double getDotProduct() {
+	private double getDotProduct() {
 		return x1*x2 + y1*y2;
 	}
 	
-	public String getSum() {
+	private String getSum() {
 		double x = x1 + x2;
 		double y = y1 + y2;
 		return "<" + x + "," + y + ">"; 
 	}
 	
-	public String getDifference() {
+	private String getDifference() {
 		double x = x2-x1;
 		double y = y2 - y1;
 		return "<" + x + "," + y + ">";
 	}
 	
-	public String getProduct() {
+	private String getProduct() {
 		double x = x1 * x2;
 		double y = y1 * y2;
 		return "<" + x + "," + y + ">";
 	}
 	
-	public double getDistance() {
+	private double getDistance() {
 		return Math.sqrt(Math.pow((x2-x1),2) + Math.pow((y2 - y1),2));
 	}
 	
-	public String getUnitVector() {
+	private String getUnitVector() {
 		double x = getMagnitude()*x1;
 		double y = getMagnitude()*y1;
 		return "<" + x + "," + y + ">";
 	}
 	
-	public void getVector(Scanner s){
+	private void getVector(Scanner s){
 		System.out.print("Vector 1 X: ");
 		x1 = Double.parseDouble(s.nextLine());
 		System.out.print("Vector 1 Y: ");
 		y1 = Double.parseDouble(s.nextLine());
 	}
 	
-	public void getVectors(Scanner s){
+	private void getVectors(Scanner s){
 		System.out.print("Vector 1 X: ");
 		x1 = Double.parseDouble(s.nextLine());
 		System.out.print("Vector 1 Y: ");
