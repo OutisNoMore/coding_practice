@@ -1,0 +1,7 @@
+always wrap classes in packages, unless they are small/temporary
+
+when compiling, always compile from parent folder
+ie javac child/<java-file>.java
+
+when exectuing, always execute from parent folder
+ie java <package-name>.<file-name>
