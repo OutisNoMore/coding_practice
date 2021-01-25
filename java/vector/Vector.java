@@ -1,4 +1,6 @@
 //operations on 2 dimensional vectors
+package vector;
+
 import java.util.Scanner;
 
 public class Vector {

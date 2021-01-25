@@ -1,4 +1,9 @@
+package calculus;
+
 import java.util.Scanner;
+
+import vector.Vector;
+import vector.Vector3D;
 
 public class Main {
 	public static void main(String args[]) {

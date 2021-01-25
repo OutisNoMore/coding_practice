@@ -1,4 +1,6 @@
 //operations on 3 dimensional vecto
+package vector;
+
 import java.util.Scanner;
 
 public class Vector3D extends Vector {
