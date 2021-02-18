@@ -30,9 +30,9 @@ void menu(){
     cout << "**********************************" << endl;
     cout << "1) New Hand\n" <<
       	    "2) Hit Me\n"   <<
- 	    "3) Stand\n"    <<
-	    "4) Hint\n"     <<
-	    "5) Exit"       << endl;
+		    "3) Stand\n"    <<
+	    	"4) Hint\n"     <<
+		    "5) Exit"       << endl;
     cout << "**********************************" << endl;
     cout << "Your choice?> ";
     cin  >> choice;
@@ -41,25 +41,24 @@ void menu(){
     switch(choice){
       case 1:
         user.newGame();
-	dealer.newGame();
-	break;
+		dealer.newGame();
+		break;
       case 2:
-	user.hitMe();
-	if(user.getCount() > 21);
-	else break;
+		user.hitMe();
+		if(user.getCount() <= 21) break;
       case 3:
-	keepGoing = user.finishGame(dealer);
-	break;
+		keepGoing = user.finishGame(dealer);
+		break;
       case 4:
-	myHint.getHint(user.getCount(), dealer.getCount());
-	break;
+		myHint.getHint(user.getCount(), dealer.getCount());
+		break;
       case 5:
-	playGame = user.exit();
-	break;
+		playGame = user.exit();
+		break;
       default:
-	cout << "Please make a valid choice" << endl;
-	cin.clear();
-	cin.ignore();
+		cout << "Please make a valid choice" << endl;
+		cin.clear();
+		cin.ignore();
     }
 
     cout << endl;
@@ -74,7 +73,7 @@ void menu(){
       cin >> again;
       if(again == 'Y' || again == 'y'){
         keepGoing = true;
-	playGame = true;
+		playGame = true;
         user.setGame(false);
         dealer.setGame(false);	
       }else{
