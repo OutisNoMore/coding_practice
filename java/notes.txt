@@ -1,7 +1,11 @@
 always wrap classes in packages, unless they are small/temporary
 
 when compiling, always compile from parent folder
+* only need to compile main file
 ie javac child/<java-file>.java
+... javac calculus/Main.java
+... dont compile dependencies, ie vector stuff
 
 when exectuing, always execute from parent folder
 ie java <package-name>.<file-name>
+... javac calculus.Main
