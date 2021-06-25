@@ -1,3 +1,5 @@
+#include <string>
+
 #include "screen.hpp"
 
 /*********************************************
@@ -95,26 +97,65 @@ void screen::printScreen(){
  ********************************************/
 void screen::cursor(){
 	int ch = 0;
+  const char* cursor = "*";
 	bool run = true;
 
 	while(run){
-		mvprintw(yPos, xPos, "*");
+		if(cursor != "*" || mvinch(yPos, xPos) == 32){
+			mvprintw(yPos, xPos, cursor);
+		} 
 
 		ch = getch();
-		mvprintw(yPos, xPos, " ");
+		if(mvinch(yPos, xPos) == 42){
+			mvprintw(yPos, xPos, " ");
+		}
 
 		switch(ch){
+			case 48:
+				cursor = "*";
+				break;
+			case 49: 			  // 1
+				cursor = "1";
+				break;
+			case 50:        // 2
+				cursor = "2";
+				break;
+			case 51:
+				cursor = "3";
+				break;
+			case 52:
+				cursor = "4";
+				break;
+			case 53:
+				cursor = "5";
+				break;
+			case 54:
+				cursor = "6";
+				break;
+			case 55:
+				cursor = "7";
+				break;
+			case 56:
+				cursor = "8";
+				break;
+			case 57:
+				cursor = "9";
+				break;
 			case KEY_UP:
 				yPos -= 2;
+				cursor = "*";
 				break;
 			case KEY_DOWN:
 				yPos += 2;
+				cursor = "*";
 				break;
 			case KEY_LEFT:
 				xPos -= 2;
+				cursor = "*";
 				break;
 			case KEY_RIGHT:
 				xPos += 2;
+				cursor = "*";
 				break;
 			default:
 				run = false;
