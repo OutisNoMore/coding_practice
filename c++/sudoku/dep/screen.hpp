@@ -1,21 +1,28 @@
 #ifndef SCREEN_HPP
 #define SCREEN_HPP
 
+#include <cstring>
+
 #include <ncurses.h>
+
+#define RED_ON_BLACK   1
+#define WHITE_ON_BLACK 2
 
 class screen{
 	private:
-		int board[9][9]; // 9x9 board for sudoku
-		int xPos = 1;    // x position of cursor
-		int yPos = 1;    // y position of cursor
+		int board[9][9];   // 9x9 board for sudoku
+		int xPos = 1;      // x position of cursor
+		int yPos = 3;      // y position of cursor
 	
 	public:
+		screen();
 		void init();
 		void exit();
 
+		void generateNumbers();
 		void printScreen();
 		void cursor();
-		void validatePosition();
+		bool validatePosition(int xPos, int yPos);
 };
 
 #endif // SCREEN_HPP
