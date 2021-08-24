@@ -95,15 +95,19 @@ void screen::generateNumbers(){
 void screen::printScreen(){
 	char rows[20];
 	int k = 0;
-
+	
+ // for every other row, add numbers
 	for(int i = 1; i < 18; i += 2){
+		k = 0;
 		memset(rows, '\0', 20);
+		// for each column, add numbers or space
     for(int j = 0; j < 19; j++){
 			if(j%2 == 0){
 				strncat(rows, "|\0", 2);
 			} 
 			else{
 				char c = ' ';
+				// if there is a given number
 	  	  if(board[(i-1)/2][k] != 0){
 					c = board[(i-1)/2][k++] + 48;
 		  	}

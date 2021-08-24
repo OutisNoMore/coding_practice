@@ -12,7 +12,7 @@ class screen{
 	private:
 		int board[9][9];   // 9x9 board for sudoku
 		int xPos = 1;      // x position of cursor
-		int yPos = 3;      // y position of cursor
+		int yPos = 1;      // y position of cursor
 	
 	public:
 		screen();
