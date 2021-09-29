@@ -21,7 +21,8 @@ screen::screen(){
  * 		A new game of traditional 9x9 Sudoku is
  * 		created.
  ********************************************/
-void screen::init(){
+void screen::init(int level){
+	this->level = level;
 	initscr();
 	clear();
 	noecho();

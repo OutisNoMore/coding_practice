@@ -13,10 +13,11 @@ class screen{
 		int board[9][9];   // 9x9 board for sudoku
 		int xPos = 1;      // x position of cursor
 		int yPos = 1;      // y position of cursor
+		int level = -1;
 	
 	public:
 		screen();
-		void init();
+		void init(int level);
 		void exit();
 
 		void generateNumbers();
