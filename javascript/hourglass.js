@@ -1,6 +1,6 @@
 const GIF = 'https://media3.giphy.com/media/l3q2IYN87QjIg51kc/giphy.gif?cid=ecf05e47i54foxrjh7e4w2mbwabd77019c4j5drqu66uittr&rid=giphy.gif'
 
-let Recording = function(cb){
+et Recording = function(cb){
 	let recorder = null;
   let recording = true;
   let audioInput = null;
