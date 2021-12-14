@@ -1,6 +1,11 @@
 """ Simple math library """
 
 
+def tester():
+    """ This function just tests to make sure the file runs """
+    print("Test Passed")
+
+
 def power_function(function):
     """ returns the integrated form of the power function """
     power = int(function[function.index('^')+1: function.index('^')+2])
@@ -14,5 +19,7 @@ def integral(lower, upper, function):
     return (pow(upper, integrated) - pow(lower, integrated)) / integrated
 
 
-FUNCTION = input("Please enter a function: ")
-print("integral " + FUNCTION + " from 0 to 1 is %.2f" % integral(0, 1, FUNCTION))
+tester()
+
+FUNC = input("Please enter a power function: ")
+print("integral " + FUNC + " from 0 to 1 is %.2f" % integral(0, 1, FUNC))
