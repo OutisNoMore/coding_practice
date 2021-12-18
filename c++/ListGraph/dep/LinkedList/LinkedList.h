@@ -17,6 +17,7 @@ class LinkedList{
 
     void add(E element);
     bool remove(E element);
+    bool remove(int index);
 
     node<E>* find(E element);
     E& get(int index);
@@ -102,6 +103,54 @@ bool LinkedList<E>::remove(E element){
 
   for(node<E>* curr = _head; curr != _tail; curr = curr->next){
     if(curr->element == element){
+      curr->last->next = curr->next;
+      curr->next->last = curr->last;
+      delete curr;
+      _size--;
+
+      return true;
+    }
+  }
+
+  return false;
+}
+
+template <typename E>
+bool LinkedList<E>::remove(int index){
+  if(index > _size || index < 0){
+    return false;
+  }
+
+  if(index == 0){
+    if(_size == 1){
+      delete _head;
+      _head = _tail = nullptr;
+      _size = 0;
+
+      return true;
+    }
+    else{
+      _head = _head->next;
+      delete _head->last;
+      _head->last = nullptr;
+      _size--;
+
+      return true;
+    }
+  }
+
+  if(index == _size-1){
+    _tail = _tail->last;
+    delete _tail->next;
+    _tail->next = nullptr;
+    _size--;
+
+    return true;
+  }
+
+  int i = 0;
+  for(node<E>* curr = _head; curr != _tail && i < _size; curr = curr->next, i++){
+    if(i == index){
       curr->last->next = curr->next;
       curr->next->last = curr->last;
       delete curr;

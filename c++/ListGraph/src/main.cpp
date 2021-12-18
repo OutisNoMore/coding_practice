@@ -34,6 +34,8 @@ int main(){
   Gtest.addNode(c2);
   Gtest.addEdge(c1, c2, 10.0);
   std::cout << Gtest.toString() << std::endl;
+  Gtest.removeNode(c1);
+  std::cout << Gtest.toString() << std::endl;
 
   return 0;
 }
