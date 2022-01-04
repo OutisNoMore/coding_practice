@@ -9,6 +9,10 @@ Tree* Tree::getA() const {
 	return _childA;
 }
 
+Tree::~Tree(){
+  
+}
+
 Tree* Tree::getB() const {
 	return _childB;
 }

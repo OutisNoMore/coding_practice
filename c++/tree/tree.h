@@ -9,6 +9,7 @@ class Tree{
 
 	public:
 		Tree(int);
+    ~Tree();
 		void recurDelete(Tree*);
 		Tree* getA() const;
 		Tree* getB() const;
