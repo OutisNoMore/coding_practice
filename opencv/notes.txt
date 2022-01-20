@@ -1,0 +1,10 @@
+How to set up Visual Studio environment 
+* open file - properties
+* For each active(debug), debug, and release
+* Configuration Properties -> Debugging -> Environment -> PATH=<opencv_dir>\bin;<opencv_dir>\x64\vc15\bin;%PATH%$(LocalDebuggerEnvironment)
+* Configuration Properties -> VC++ Directories -> Include Directories -> ;<opencv_dir>\include
+* Configuration Properties -> VC++ Directories -> Library Directories -> ;<opencv_dir>bin;<opencv_dir>\lib\Debug
+* C/C++ -> General -> additional include directories -> <opencv_dir>\include
+* C/C++ -> All Options -> additional include directories -> <opencv_dir>\include
+* Linker -> General -> Additional Library Dependencies -> <opencv_dir>\lib; <opencv_dir>\x64\vc15\lib
+* Linker -> Input -> Additional Dependencies -> opencv_world343(d).lib;<any other library>
