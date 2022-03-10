@@ -106,7 +106,7 @@ def rotateLeft(image):
     # return copy of rotated image
     return newImage
 
-def findEdges(image):
+def findEdges(image, threshold):
     """Takes the given image and returns a copy with the edges detected"""
     newImage = Image.new("RGB", (image.width, image.height)) 
     newPx = newImage.load()
@@ -149,8 +149,9 @@ def findEdges(image):
                 greenNeighbor = (neighborEast[1] + neighborSE[1] + neighborSouth[1]) / 3
                 blueNeighbor = (neighborEast[2] + neighborSE[2] + neighborSouth[2]) / 3
                 # calculate distance/how different the rgb of pixel against its neighbor
-                distance = abs(px[x, y][0] - redNeighbor) + abs(px[x, y][1] - greenNeighbor) + abs(px[x, y][2] - blueNeighbor)
-            if distance > 30:
+                distance = abs(px[x, y][0] - redNeighbor)**2 + abs(px[x, y][1] - greenNeighbor)**2 + abs(px[x, y][2] - blueNeighbor)**2
+                distance = distance ** 0.5
+            if distance > threshold:
                 newPx[x, y] = (0, 0, 0)
             else:
                 newPx[x, y] = (255, 255, 255)
@@ -220,7 +221,8 @@ def main():
             print("10 - Display edited image")
             print("11 - Display this help")
             print("12 - Save and quit")
-            print("13 - Quit without saving")
+            print("13 - Save without quitting")
+            print("14 - Quit without saving")
             # get user choice
             response = int(input("Enter your choice: "))
             # check that there is new image to save or open
@@ -238,7 +240,8 @@ def main():
             elif response == 5:
                 newImage = rotateLeft(image)
             elif response == 6:
-                newImage = findEdges(image)
+                threshold = int(input("Enter threshold(0 - 100): "))
+                newImage = findEdges(image, threshold)
             elif response == 7:
                 newImage = createGrayscale(image)
             elif response == 8:
@@ -254,6 +257,8 @@ def main():
                 newImage.save("output.jpg")
                 done = True
             elif response == 13:
+                newImage.save("output.jpg")
+            elif response == 14:
                 done = True
             else:
                 print("ERROR: Invalid input, please try again")
