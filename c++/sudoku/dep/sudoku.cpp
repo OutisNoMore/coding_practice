@@ -118,17 +118,16 @@ int main(){
   test.push_back(a);
   test.push_back(b);
   test.push_back(c);
-	test.push_back(d);
-	test.push_back(e);
-	test.push_back(f);
-	test.push_back(g);
-	test.push_back(h);
-	test.push_back(i);
+  test.push_back(d);
+  test.push_back(e);
+  test.push_back(f);
+  test.push_back(g);
+  test.push_back(h);
+  test.push_back(i);
+
   printBoard(test);
-
-	solveSudoku(test);
-
-	printBoard(test);
+  solveSudoku(test);
+  printBoard(test);
 
   return 0;
 }
