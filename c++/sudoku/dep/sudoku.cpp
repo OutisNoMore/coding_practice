@@ -77,20 +77,20 @@ bool findSolution(std::vector<std::vector<char>>& board, int row, int col){
 }
 
 void solveSudoku(std::vector<std::vector<char>>& board){
-	if(findSolution(board, 0, 0)){
-		std::cout << "Solution found!" << std::endl;
-	} else{
-		std::cout << "No solution" << std::endl;
-	}
+  if(findSolution(board, 0, 0)){
+    std::cout << "Solution found!" << std::endl;
+  } else{
+    std::cout << "No solution" << std::endl;
+  }
 }
 
 void printBoard(std::vector<std::vector<char>>& board){
-	for(int i = 0; i < 9; i++){
-		for(int j = 0; j < 9; j++){
-			std::cout << board[i][j] << " ";
-		}
-		std::cout << std::endl;
-	}
+  for(int i = 0; i < 9; i++){
+    for(int j = 0; j < 9; j++){
+      std::cout << board[i][j] << " ";
+    }
+    std::cout << std::endl;
+  }
 }
 
 int main(){
