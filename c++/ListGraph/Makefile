@@ -5,14 +5,14 @@ SDIR  = src
 CC    = g++
 FLAGS = -g -Wall -I $(IDIR1) -I $(IDIR2) 
 
-main: main.o City.o
+main: $(ODIR)/main.o $(ODIR)/City.o
 	$(CC) $(FLAGS) $^ -o $(ODIR)/$@
 
-main.o: $(SDIR)/main.cpp 
-	$(CC) $(FLAGS) -c $< -o $(ODIR)/$@
+$(ODIR)/main.o: $(SDIR)/main.cpp 
+	$(CC) $(FLAGS) -c $< -o $@
 
-City.o: $(IDIR2)/City.cpp $(IDIR2)/City.h
-	$(CC) $(FLAGS) -c $< -o $(ODIR)/$@
+$(ODIR)/City.o: $(IDIR2)/City.cpp $(IDIR2)/City.h
+	$(CC) $(FLAGS) -c $< -o $@
 
 clean:
 	rm main *.o

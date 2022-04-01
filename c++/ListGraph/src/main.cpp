@@ -14,17 +14,17 @@ int main(){
   test.add(test1);
   test.add(test2);
 
-  test.get(0).add(c1);
-  test.get(0).add(City("test2", 200));
-  test.get(0).add(City("test3", 300));
+  test[0].add(c1);
+  test[0].add(City("test2", 200));
+  test[0].add(City("test3", 300));
 
-  test.get(1).add(City("test4", 400));
-  test.get(1).add(City("test5", 500));
-  test.get(1).add(City("test6", 600));
+  test[1].add(City("test4", 400));
+  test[1].add(City("test5", 500));
+  test[1].add(City("test6", 600));
 
   for(int i = 0; i < test.size(); i++){
     for(int j = 0; j < test.get(i).size(); j++){
-      std::cout << (test.get(i).get(j)).toString() << " ";
+      std::cout << (test[i][j]).toString() << " ";
     }
     std::cout << std::endl;
   }

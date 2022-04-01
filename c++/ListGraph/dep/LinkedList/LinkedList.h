@@ -21,6 +21,7 @@ class LinkedList{
 
     node<E>* find(E element);
     E& get(int index);
+    E& operator[](int index);
     int indexOf(E element);
     int size(){ return _size; }
 };
@@ -189,7 +190,7 @@ int LinkedList<E>::indexOf(E element){
 template <typename E>
 E& LinkedList<E>::get(int index){
   if(index >= _size){
-//    return nullptr;
+    throw;
   }
   int i = 0;
   for(node<E>* curr = _head; curr != nullptr && i < _size; curr = curr->next, i++){
@@ -197,7 +198,12 @@ E& LinkedList<E>::get(int index){
       return curr->element;
     }
   }
-//  return nullptr;
+  throw;
+}
+
+template <typename E>
+E& LinkedList<E>::operator[](int index){
+  return this->get(index);
 }
 
 #endif // LINKEDLIST_H

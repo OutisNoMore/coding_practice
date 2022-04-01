@@ -29,7 +29,7 @@ while running:
         # Did the user click the window close button?
         if event.type == pygame.QUIT:
             running = False
-        if event.type == pygame.MOUSEBUTTONDOWN:
+        elif event.type == pygame.MOUSEBUTTONDOWN:
             pos = pygame.mouse.get_pos()
             # Check that user clicked circle
             if ((pos[0] - center[0]) ** 2) + ((pos[1] - center[1]) ** 2) <= (radius ** 2):
