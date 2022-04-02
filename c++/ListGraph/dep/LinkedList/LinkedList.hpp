@@ -1,7 +1,8 @@
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
 
-#include "nodes.h"
+#include <string>
+#include "nodes.hpp"
 
 template <typename E>
 class LinkedList{
@@ -24,6 +25,7 @@ class LinkedList{
     E& operator[](int index);
     int indexOf(E element);
     int size(){ return _size; }
+    std::string toString();
 };
 
 template <typename E>
@@ -189,8 +191,8 @@ int LinkedList<E>::indexOf(E element){
 
 template <typename E>
 E& LinkedList<E>::get(int index){
-  if(index >= _size){
-    throw;
+  if(index >= _size || index < 0){
+    throw "Index out of bounds";
   }
   int i = 0;
   for(node<E>* curr = _head; curr != nullptr && i < _size; curr = curr->next, i++){
@@ -198,12 +200,21 @@ E& LinkedList<E>::get(int index){
       return curr->element;
     }
   }
-  throw;
+  throw "Element does not exist";
 }
 
 template <typename E>
 E& LinkedList<E>::operator[](int index){
   return this->get(index);
+}
+
+template <typename E>
+std::string LinkedList<E>::toString(){
+  std::string output = "";
+  for(node<E>* curr = _head; curr != nullptr; curr = curr->next){
+    output += curr->element.toString() + ", ";
+  }
+  return output;
 }
 
 #endif // LINKEDLIST_H
