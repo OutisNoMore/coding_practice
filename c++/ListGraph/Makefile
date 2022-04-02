@@ -5,7 +5,7 @@ SDIR  = src
 CC    = g++
 FLAGS = -g -Wall -I $(IDIR1) -I $(IDIR2) 
 
-main: $(ODIR)/main.o $(ODIR)/City.o
+main.exe: $(ODIR)/main.o $(ODIR)/City.o
 	$(CC) $(FLAGS) $^ -o $(ODIR)/$@
 
 $(ODIR)/main.o: $(SDIR)/main.cpp $(IDIR1)/LinkedList/LinkedList.hpp $(IDIR1)/ListGraph/ListGraph.hpp $(IDIR1)/PriorityQueue/PriorityQueue.hpp
