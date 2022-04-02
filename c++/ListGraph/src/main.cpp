@@ -18,11 +18,7 @@ int main(){
     GraphTest.addEdge(c2, City("test5", 60), 9.87);
     std::cout << GraphTest.toString() << std::endl;
     std::cout << "Dijkstras from c1" << std::endl;
-    City* path = GraphTest.dijkstra(c1, City("test5", 60));
-    for(int i = 0; i < 5; i++){
-      std::cout << path[i].toString() << " ";
-    }
-    delete [] path;
+    std::cout << GraphTest.dijkstra(c1, City("test5", 60)).toString() << std::endl;
     std::cout << std::endl;
     std::cout << "Removing node test" << std::endl;
     GraphTest.removeNode(c2);

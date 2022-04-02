@@ -78,7 +78,7 @@ class ListGraph{
     LinkedList<bool> _visited;
     LinkedList<double> _state;
 
-    void dijkstraHelper(int node, E destination, E output[]);
+    void dijkstraHelper(int node, E destination, int output[]);
 
   public:
     /***************
@@ -97,10 +97,7 @@ class ListGraph{
     /*************
      * ACCESSORS *
      *************/
-    E* dijkstra(E source, E destination);
-    void floydWarshall(E source, E destination);
-    void prim();
-    void kruskal();
+    LinkedList<E> dijkstra(E source, E destination);
     std::string toString();
 };
 
@@ -158,46 +155,66 @@ void ListGraph<E>::removeNode(E node){
 }
 
 template <typename E>
-void ListGraph<E>::dijkstraHelper(int node, E destination, E output[]){
+void ListGraph<E>::dijkstraHelper(int node, E destination, int output[]){
+  // Check that node exists
   if(node == -1){
     throw "Node does not exist";
   }
+  // Destination reached, end of function
   if(_graph[node] == destination){
     return;
   }
+  // Mark node as visited
   _visited[node] = true;
+  // Priority queue of nodes to visit
   PriorityQueue<pair<E>, CompareMax<pair<E>>> dijkstraEdges;
+  // Breadth first search
   for(int i = 0; i < _graph[node].edges.size(); i++){
     dijkstraEdges.push(_graph[node].edges[i]);
   }
+  // Visit all adjacent nodes
   while(dijkstraEdges.size() != 0){
     pair<E> next = dijkstraEdges.pop();
     int index = _graph.indexOf(next.destination);
+    // Only visit node if not visited and distance is shortest
     if(!_visited[index] && _state[node] + next.weight < _state[index]){
       _state[index] = _state[node] + next.weight;
-      output[index] = _graph[node].node;
+      output[index] = node; // Build path from source to destination
       dijkstraHelper(index, destination, output);
     }
   }
 }
 
 template <typename E>
-E* ListGraph<E>::dijkstra(E source, E destination){
+LinkedList<E> ListGraph<E>::dijkstra(E source, E destination){
   int index1 = _graph.indexOf(source);
   int index2 = _graph.indexOf(destination);
+  // Check that source and destination exists
   if(index1 == -1){
     throw "Source does not exist";
   }
   if(index2 == -1){
     throw "Destination does not exist";
   }
-  E* output = new E[_graph.size()];
+  // initialize required parameters
   for(int i = 0; i < _graph.size(); i++){
     _state[i] = 1000000;
     _visited[i] = false;
   }
+  // set first source node
   _state[index1] = 0;
-  dijkstraHelper(index1, destination, output);
+  // index of path from source to destination
+  int path[_graph.size()];
+  // Use dijkstras to find shortest path
+  dijkstraHelper(index1, destination, path);
+  // convert from index to elements
+  LinkedList<E> output;
+  int index = index2;
+  while(index != index1){
+    output.append(_graph[index].node);
+    index = path[index];
+  }
+  output.append(_graph[index1].node);
   return output;
 }
 

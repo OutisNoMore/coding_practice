@@ -15,5 +15,5 @@ $(ODIR)/City.o: $(IDIR2)/City.cpp $(IDIR2)/City.hpp
 	$(CC) $(FLAGS) -c $< -o $@
 
 clean:
-	rm bin/main bin/*.o
+	rm bin/main.exe bin/*.o
 

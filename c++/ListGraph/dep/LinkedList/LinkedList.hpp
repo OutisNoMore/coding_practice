@@ -17,6 +17,7 @@ class LinkedList{
     ~LinkedList();
 
     void add(E element);
+    void append(E element);
     bool remove(E element);
     bool remove(int index);
 
@@ -68,6 +69,20 @@ void LinkedList<E>::add(E element){
     _tail = _tail->next;
   }
 
+  _size++;
+}
+
+template <typename E>
+void LinkedList<E>::append(E element){
+  if(_size == 0){
+    _head = new node<E>(element);
+    _tail = _head;
+  }
+  else{
+    _head->last = new node<E>(element);
+    _head->last->next = _head;
+    _head = _head->last;
+  }
   _size++;
 }
 
