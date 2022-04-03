@@ -26,6 +26,23 @@ int main(){
     std::cout << "Removing edge" << std::endl;
     GraphTest.removeEdge(c1, c2);
     std::cout << GraphTest.toString() << std::endl;
+    std::cout << "--------------------------------" << std::endl;
+    std::cout << std::endl;
+    int choice = 0;
+    while(choice != -1){
+      std::cin >> choice;
+      std::cout << "0 to print, 1 for dijkstras" << std::endl;
+      switch(choice){
+        case 0:
+          std::cout << GraphTest.toString() << std::endl;
+          break;
+        case 1:
+          std::cout << GraphTest.dijkstra(c1, City("test3", 100)).toString() << std::endl;
+          break;
+        default:
+          break;
+      }
+    }
   }
   catch(const char* msg){
     std::cerr << msg << std::endl;
