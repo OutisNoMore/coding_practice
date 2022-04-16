@@ -18,7 +18,6 @@ class LinkedList{
 
     void add(E element);
     void append(E element);
-    bool remove(E element);
     bool remove(int index);
 
     node<E>* find(E element);
@@ -84,53 +83,6 @@ void LinkedList<E>::append(E element){
     _head = _head->last;
   }
   _size++;
-}
-
-template <typename E>
-bool LinkedList<E>::remove(E element){
-  if(_size == 0){
-    return false;
-  }
-
-  if(_head->element == element){
-    if(_size == 1){
-      delete _head;
-      _head = _tail = nullptr;
-      _size = 0;
-
-      return true;
-    }
-    else{
-      _head = _head->next;
-      delete _head->last;
-      _head->last = nullptr;
-      _size--;
-
-      return true;
-    }
-  }
-
-  if(_tail->element == element){
-    _tail = _tail->last;
-    delete _tail->next;
-    _tail->next = nullptr;
-    _size--;
-
-    return true;
-  }
-
-  for(node<E>* curr = _head; curr != _tail; curr = curr->next){
-    if(curr->element == element){
-      curr->last->next = curr->next;
-      curr->next->last = curr->last;
-      delete curr;
-      _size--;
-
-      return true;
-    }
-  }
-
-  return false;
 }
 
 template <typename E>

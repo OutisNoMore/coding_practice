@@ -49,7 +49,8 @@ struct Edge{
   Edge(T n){ node = n; }
 
   void add(pair<T> element){ edges.add(element); }
-  void remove(pair<T> element){ edges.remove(element); }
+  void remove(int index){ edges.remove(index); }
+  int indexOf(pair<T> element){ return edges.indexOf(element); }
   bool operator==(const T& e){ return this->node == e; }
   bool operator==(const Edge& e){ return this->node == e.node; }
   std::string toString(){
@@ -63,22 +64,15 @@ struct Edge{
   }
 };
 
-template <typename T>
-class CompareMax{
-  public:
-    bool operator()(T i1, T i2){
-      return i1 > i2;
-    }
-};
-
 template <typename E>
 class ListGraph{
   private:
     LinkedList<Edge<E>> _graph;
     LinkedList<bool> _visited;
     LinkedList<double> _state;
+    LinkedList<int> _path;
 
-    void dijkstraHelper(int node, E destination, int output[]);
+    void dijkstraHelper(int node, E destination);
 
   public:
     /***************
@@ -113,6 +107,7 @@ void ListGraph<E>::addNode(E node){
   }
   _visited.add(false);
   _state.add(1000000);
+  _path.add(-1);
   _graph.add(Edge<E>(node));
 }
 
@@ -137,7 +132,10 @@ void ListGraph<E>::removeEdge(E source, E destination, double weight){
   if(index == -1){
     return;
   }
-  _graph[index].remove(pair<E>(destination, weight));
+  int index2 = _graph[index].indexOf(pair<E>(destination, weight));
+  if(index2 != -1){
+    _graph[index].remove(index2);
+  }
 }
 
 template <typename E>
@@ -149,13 +147,17 @@ void ListGraph<E>::removeNode(E node){
   _graph.remove(index);
   _visited.remove(index);
   _state.remove(index);
+  _path.remove(index);
   for(int i = 0; i < _graph.size(); i++){
-    _graph[i].remove(pair<E>(node, -1));
+    int index2 = _graph[i].indexOf(pair<E>(node, -1));
+    if(index2 != -1){
+      _graph[i].remove(index2);
+    }
   }
 }
 
 template <typename E>
-void ListGraph<E>::dijkstraHelper(int node, E destination, int output[]){
+void ListGraph<E>::dijkstraHelper(int node, E destination){
   // Check that node exists
   if(node == -1){
     throw "Node does not exist";
@@ -167,20 +169,20 @@ void ListGraph<E>::dijkstraHelper(int node, E destination, int output[]){
   // Mark node as visited
   _visited[node] = true;
   // Priority queue of nodes to visit
-  PriorityQueue<pair<E>, CompareMax<pair<E>>> dijkstraEdges;
+  PriorityQueue<pair<E>> dijkstraEdges([](pair<E> i1, pair<E> i2){return i1 > i2;});
   // Breadth first search
   for(int i = 0; i < _graph[node].edges.size(); i++){
     dijkstraEdges.push(_graph[node].edges[i]);
   }
-  // Visit all adjacent nodes
+  // Visit all adjacent nodes starting with shortest
   while(dijkstraEdges.size() != 0){
     pair<E> next = dijkstraEdges.pop();
     int index = _graph.indexOf(next.destination);
     // Only visit node if not visited and distance is shortest
     if(!_visited[index] && _state[node] + next.weight < _state[index]){
       _state[index] = _state[node] + next.weight;
-      output[index] = node; // Build path from source to destination
-      dijkstraHelper(index, destination, output);
+      _path[index] = node; // Build path from source to destination
+      dijkstraHelper(index, destination);
     }
   }
 }
@@ -200,19 +202,23 @@ LinkedList<E> ListGraph<E>::dijkstra(E source, E destination){
   for(int i = 0; i < _graph.size(); i++){
     _state[i] = 1000000;
     _visited[i] = false;
+    _path[i] = -1;
   }
   // set first source node
   _state[index1] = 0;
   // index of path from source to destination
-  int path[_graph.size()];
   // Use dijkstras to find shortest path
-  dijkstraHelper(index1, destination, path);
+  dijkstraHelper(index1, destination);
   // convert from index to elements
   LinkedList<E> output;
   int index = index2;
+  if(_path[index] == -1){
+    // Path does not exist from source to destination
+    return output;
+  }
   while(index != index1){
     output.append(_graph[index].node);
-    index = path[index];
+    index = _path[index];
   }
   output.append(_graph[index1].node);
   return output;

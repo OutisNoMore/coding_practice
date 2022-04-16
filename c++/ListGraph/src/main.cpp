@@ -20,14 +20,15 @@ int main(){
     std::cout << "Dijkstras from c1" << std::endl;
     std::cout << GraphTest.dijkstra(c1, City("test5", 60)).toString() << std::endl;
     std::cout << std::endl;
-    std::cout << "Removing node test" << std::endl;
-    GraphTest.removeNode(c2);
-    std::cout << GraphTest.toString() << std::endl;
     std::cout << "Removing edge" << std::endl;
     GraphTest.removeEdge(c1, c2);
     std::cout << GraphTest.toString() << std::endl;
+    std::cout << "Removing node test" << std::endl;
+    GraphTest.removeNode(c2);
+    std::cout << GraphTest.toString() << std::endl;
     std::cout << "--------------------------------" << std::endl;
     std::cout << std::endl;
+    /*
     int choice = 0;
     while(choice != -1){
       std::cin >> choice;
@@ -43,6 +44,7 @@ int main(){
           break;
       }
     }
+    */
   }
   catch(const char* msg){
     std::cerr << msg << std::endl;

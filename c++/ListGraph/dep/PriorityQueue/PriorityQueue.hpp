@@ -4,15 +4,16 @@
 #include <string>
 #include "nodes.hpp"
 
-template <typename E, typename C>
+template <typename E>
 class PriorityQueue{
   private:
     node<E>* _head;
-    C comparator; 
+    bool (*_comparator)(E, E);
     int _size;
 
   public:
     PriorityQueue();
+    PriorityQueue(bool (*comparator)(E, E));
     PriorityQueue(E root);
     ~PriorityQueue();
 
@@ -26,20 +27,27 @@ class PriorityQueue{
     std::string toString();
 };
 
-template <typename E, typename C>
-PriorityQueue<E, C>::PriorityQueue(){
+template <typename E>
+PriorityQueue<E>::PriorityQueue(){
   _head = nullptr;
   _size = 0;
 }
 
-template <typename E, typename C>
-PriorityQueue<E, C>::PriorityQueue(E root){
+template <typename E>
+PriorityQueue<E>::PriorityQueue(bool (*comparator)(E, E)){
+  _head = nullptr;
+  _size = 0;
+  this->_comparator = comparator;
+}
+
+template <typename E>
+PriorityQueue<E>::PriorityQueue(E root){
   _head = new node<E>(root);
   _size = 1;
 }
 
-template <typename E, typename C>
-PriorityQueue<E, C>::~PriorityQueue(){
+template <typename E>
+PriorityQueue<E>::~PriorityQueue(){
   if(_size != 0){
     for(node<E>* curr = _head->next; curr != nullptr;){
       delete curr->last;
@@ -49,10 +57,10 @@ PriorityQueue<E, C>::~PriorityQueue(){
   _size = 0;
 }
 
-template <typename E, typename C>
-void PriorityQueue<E, C>::bubbleDown(){
+template <typename E>
+void PriorityQueue<E>::bubbleDown(){
   for(node<E>* current = _head; current->next; current = current->next){
-    if(comparator(current->element, current->next->element)){
+    if(_comparator(current->element, current->next->element)){
       E temp = current->element;
       current->element = current->next->element;
       current->next->element = temp;
@@ -60,8 +68,8 @@ void PriorityQueue<E, C>::bubbleDown(){
   }
 }
 
-template <typename E, typename C>
-void PriorityQueue<E, C>::push(E element){
+template <typename E>
+void PriorityQueue<E>::push(E element){
   if(_size == 0){
     _head = new node<E>(element);
   }
@@ -74,8 +82,8 @@ void PriorityQueue<E, C>::push(E element){
   _size++;
 }
 
-template <typename E, typename C>
-E PriorityQueue<E, C>::pop(){
+template <typename E>
+E PriorityQueue<E>::pop(){
   if(_size == 0){
     throw "Empty Queue";
   }
@@ -91,16 +99,16 @@ E PriorityQueue<E, C>::pop(){
   return output;
 }
 
-template <typename E, typename C>
-E PriorityQueue<E, C>::peek(){
+template <typename E>
+E PriorityQueue<E>::peek(){
   if(_size == 0){
     throw "Empty Queue";
   }
   return _head->element;
 }
 
-template <typename E, typename C>
-std::string PriorityQueue<E, C>::toString(){
+template <typename E>
+std::string PriorityQueue<E>::toString(){
   std::string output = "";
   for(node<E>* current = _head; current != nullptr; current = current->next){
     output = output + std::to_string(current->element) + ", ";
