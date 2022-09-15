@@ -2,7 +2,7 @@ IDIR1 = dep
 IDIR2 = util
 ODIR  = bin
 SDIR  = src
-CC    = g++
+CC    = g++ 
 FLAGS = -g -Wall -I $(IDIR1) -I $(IDIR2) 
 
 main.exe: $(ODIR)/main.o $(ODIR)/City.o
